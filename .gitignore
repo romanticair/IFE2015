@@ -1,0 +1,13 @@
+.DS_Store
+/fonts
+/design
+
+# Editor directories and files
+lib/
+.idea
+.vscode
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+*.sw*
