@@ -1,0 +1,107 @@
+/*banner*/
+.banner {
+  position: relative;
+  height: 434px;
+  background: url(../img/banner-bg.jpg) center center no-repeat;
+  background-size: 100% 100%;
+}
+
+.banner .desc {
+  position: absolute;
+  right: 100px;
+  bottom: 0;
+  width: 300px;
+  padding: 10px 10px 30px;
+  color: #fff;
+  background: -webkit-linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0));
+  background: -o-linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0));
+  background: linear-gradient(rgba(255, 255, 255, 0.7) 0%, rgba(255, 255, 255, 0.5) 25%, rgba(255, 255, 255, 0));
+}
+
+.banner .desc > h3 {
+  text-align: right;
+  font-size: 14px;
+}
+
+.banner .desc > p {
+  margin-top: 12px;
+  font-size: 12px;
+  line-height: 150%;
+  text-indent: 2em;
+}
+
+/*conntent*/
+.content {
+  height: 470px;
+  padding-top: 10px;
+  background: #eee;
+}
+
+.content .item:nth-child(2) {
+  margin-left: 10px;
+  margin-right: 10px;
+}
+
+.content .item {
+  overflow: hidden;
+  float: left;
+  width: 320px;
+  height: 360px;
+  /*自适应 p 标签内容高度需将固定高度全去掉，clearfix 去除浮动影响,
+  以及配合使用 overflow 和下面两行代码。
+  */
+  /*padding-bottom: 10000px;*/
+  /*margin-bottom: -10000px;*/
+  background: #fff;
+}
+
+.content .item > img {
+  width: 300px;
+  height: 180px;
+  padding: 10px;
+}
+
+.content .item > p {
+  padding: 5px 30px 25px;
+  line-height: 170%;
+  font-size: 12px;
+  text-indent: 2em;
+  color: #000;
+}
+
+/*about me*/
+.about-me {
+  position: relative;
+  height: 520px;
+}
+
+.about-me .avatar {
+  position: absolute;
+  left: 50%;
+  top: -50px;
+  width: 160px;
+  height: 160px;
+  margin-left: -80px;
+  border-radius: 50%;
+  background: pink;
+}
+
+.about-me > .container {
+  position: absolute;
+  /*或者用 margin 居中，同时限制 p 宽度*/
+  left: 50%;
+  width: 600px;
+  margin: 130px 0 0 -300px;
+}
+
+.about-me h3 {
+  font-size: 20px;
+  font-family: 'Century Gothic';
+  text-align: center;
+}
+
+.about-me p {
+  margin-top: 46px;
+  font-size: 14px;
+  text-indent: 2em;
+}
