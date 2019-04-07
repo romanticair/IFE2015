@@ -1,0 +1,133 @@
+h1 {
+  color: blue;
+}
+h2 {
+  font-size: 14px;
+}
+p {
+  font-size: 12px;
+  color: yellow;
+  background: black;
+}
+img {
+  border: 2px solid red;
+}
+
+/*Mission 5*/
+.text-style li {
+  border: 1px solid #fff;
+  width: 300px;
+}
+.startwith-t li:first-child {
+  text-indent: 2em;
+}
+.startwith-t li:nth-child(2) {
+  text-transform: capitalize;
+}
+.startwith-t li:nth-child(3) {
+  text-decoration: line-through;
+}
+.startwith-t li:nth-child(4) {
+  text-align: left;
+}
+.startwith-t li:last-child {
+  text-indent: 1em;
+  text-transform: uppercase;
+  text-decoration: underline;
+  text-align: center;
+}
+
+.other li:first-child {
+  word-spacing: 2em;
+}
+.other li:nth-child(2) {
+  white-space: wrap;
+}
+.other li:nth-child(3) {
+  line-height: 4em;
+}
+.other li:last-child {
+  word-spacing: 1em;
+  line-height: 1em;
+  white-space: nowrap;
+  color: #777;
+}
+
+.startwith-f li:first-child {
+  font: italic bold 12px/20px "Microsoft YaHei", arial, sans-serif;
+}
+.startwith-f li:nth-child(2) {
+  font-family: "Microsoft YaHei", "Times New Roman", Serif;
+}
+.startwith-f li:nth-child(3) {
+  font-size: 48px;
+}
+.startwith-f li:nth-child(4) {
+  font-weight: 700;
+}
+.startwith-f li:last-child {
+  font-family: SelfDefinition;
+}
+@font-face {
+  font-family: SelfDefinition;
+  src: url('./font/fontawesome-webfont.ttf'),
+      url('./font/fontawesome-webfont.eot');
+}
+.fa-font-awesome:before {
+  content: "\f2b4";
+}
+
+/*Mission 6-1*/
+.box {
+  width: 960px;
+  height: 100px;
+  background: red;
+}
+.box {
+  margin: 0 auto;
+/*  position: relative;
+  left: 50%;
+  transform: translateX(-50%);*/
+}
+
+/*Mission 6-2*/
+.border-radius {
+  margin-top: 10px;
+  overflow: hidden;
+}
+.top2, .top3, .top4, .top5,
+.bottom2, .bottom3, .bottom4, .bottom5 {
+  height: 1px;
+  background: pink;
+  overflow: hidden;
+}
+.top1, .bottom1 {
+  margin: 0px 5px;
+  border-top: solid 1px black;
+}
+.top2, .bottom2 {
+  margin: 0px 3px;
+  border-left: solid 2px black;
+  border-right: solid 2px black;
+}
+.top3, .bottom3 {
+  margin: 0px 2px;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+}
+.top4, .bottom4 {
+  margin: 0px 1px;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+}
+.top5, .bottom5 {
+  margin: 0px 1px;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+}
+.main {
+  height: 100%;
+  border-left: solid 1px black;
+  border-right: solid 1px black;
+  background: pink;
+}
