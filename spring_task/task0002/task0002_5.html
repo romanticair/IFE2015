@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>拖拽控制</title>
+  <style>
+    html * {margin: 0; padding: 0;}
+    .wrapper {
+      height: 400px;
+      width: 600px;
+      padding: 20px;
+      margin: 20px auto;
+      background: #eee;
+    }
+
+    .wrapper > div {
+      float: left;
+      width: 200px;
+      height: 400px;
+      background: #fff;
+    }
+
+    .left-box {
+      margin-right: 100px;
+    }
+    .right-box {
+      margin-left: 100px;
+    }
+
+    .wrapper > div > div {
+      height: 40px;
+      border: 1px solid #000;
+      background: red;
+    }
+
+    /*绝对定位版*/
+    html {position: relative;}
+    .wrapper > div > div {
+      /*动态控制*/
+      /*position: absolute;*/
+      width: 200px;
+      transition: opacity 1s;
+    }
+    .wrapper > div > div.selected {
+      position: absolute;
+      opacity: 0.7;
+      padding-top: 5px;
+      padding-bottom: 5px;
+      cursor: crosshair;
+      background: pink;
+    }
+  </style>
+</head>
+<body>
+    <h1>能够随意拖拽的盒子元素，试试吧</h1>
+    <p>限制拖拽移置的范围为另一个盒子内，可选择盒子内随意一层元素插置噢！</p>
+  <div class="wrapper">
+    <!-- 简单了解
+    <div class="left-box">
+      <div draggable="true" id="source"></div>
+    </div>
+    <div class="right-box" id="target"></div>
+     -->
+
+    <!-- drag 方案 -->
+    <!-- 
+    <div class="left-box">
+      <div draggable="true">1</div>
+      <div draggable="true">2</div>
+      <div draggable="true">3</div>
+      <div draggable="true">4</div>
+    </div>
+    <div class="right-box">
+      <div draggable="true">5</div>
+      <div draggable="true">6</div>
+      <div draggable="true">7</div>
+      <div draggable="true">8</div>
+    </div>
+    -->
+  
+    <!-- onmouse* + absolute 方案 -->
+    <div class="left-box">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </div>
+    <div class="right-box">
+      <div>1</div>
+      <div>2</div>
+      <div>3</div>
+      <div>4</div>
+    </div>
+  </div>
+  <script src="./js/util.js"></script>
+  <script src="./js/task0002_5.js"></script>
+</body>
+</html>

@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>轮播图</title>
+  <style>
+    html * {
+      margin: 0;
+      padding: 0;
+    }
+
+    .container {
+      overflow: hidden;
+      position: relative;
+      height: 448px;
+      width: 800px;
+      margin: 10px auto;
+    }
+
+    .swiper {
+      position: absolute;
+      width: 4000px;
+      list-style: none;
+      transition: all 1s;
+    }
+
+    .swiper li {
+      float: left;
+    }
+
+    .swiper img {
+      display: block;
+      width: 800px;
+      height: 448px;
+    }
+
+    .controler {
+      position: relative;
+      width: 120px;
+      margin: 400px auto 0;
+    }
+
+    .controler li {
+      display: inline-block;
+      width: 10px;
+      height: 10px;
+      margin-left: 10px;
+      border-radius: 50%;
+      background: #fff;
+    }
+    .controler li:hover {
+      background: pink;
+      cursor: pointer;
+    }
+    .controler li.active {
+      background: #777;
+    }
+  </style>
+</head>
+<body>
+  <div class="container" id="swiper-box">
+    <ul class="swiper" id="swiper">
+      <li><img src="./img/1.jpg" alt=""></li>
+      <li><img src="./img/2.jpg" alt=""></li>
+      <li><img src="./img/3.jpg" alt=""></li>
+      <li><img src="./img/4.jpg" alt=""></li>
+      <li><img src="./img/5.jpg" alt=""></li>
+    </ul>
+
+    <ul class="controler" id="swiper-controler">
+      <li class="active"></li>
+      <li class=""></li>
+      <li class=""></li>
+      <li class=""></li>
+      <li class=""></li>
+    </ul>
+  </div>
+
+  <script src="./js/util.js"></script>
+  <script src="./js/task0002_3.js"></script>
+  <script>
+    window.onload = function () {
+      swiper({
+        positiveSeq: true,
+        // circle: true,
+        speed: 2000,
+        // positiveSeq: false,
+        // circle: false,
+      })
+
+      // 方案1:
+      // 点击切换 -> 开个 transitionTime setTimeout 后执行 setInterval
+      // 边界 -> 多几个 if 判断，清除当前定时器，然后和上面类似
+
+
+      // 方案2:
+      // 4 (0 1 2 3 4) 0
+      // 前后多插入照片，无缝衔接，不会出现生硬的视觉效果，例如：在 4 时，要切换到第一张 0，则继续往下滑动到最尾部辅助的 0(有动画)，滑动完成后立即重置位置到真正的 0(直接跳转，无动画)
+
+    }
+  </script>
+</body>
+</html>

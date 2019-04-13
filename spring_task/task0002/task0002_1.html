@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>兴趣爱好</title>
+  <style>
+    #hobby + div {
+      display: inline-block;
+    }
+
+    #warn {
+      transition: all 3s;
+    }
+
+    .warn {
+      color: red;
+    }
+
+    .success {
+      color: green;
+    }
+  </style>
+</head>
+<body>
+  <div>
+    <h1>在下面输入你的兴趣爱好</h1>
+    <p>可以以空格，逗号，顿号，换行，分号作为分隔符</p>
+    <!-- <input type="text" id="hobby" placeholder="请输入您的兴趣爱好"> -->
+    <textarea name="hobby" id="hobby" cols="30" rows="10"></textarea>
+    <div>
+      <div id="warn" style="dispaly: none"></div>
+      <input type="button" id="save" value="保存">
+    </div>
+   <!-- <p id="showArea"></p> -->
+  </div>
+  <div id="showArea"></div>
+
+  <script src="./js/util.js"></script>
+  <script src="./js/task0002_1.js"></script>
+</body>
+</html>

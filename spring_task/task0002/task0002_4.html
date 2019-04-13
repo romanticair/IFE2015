@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>搜索提示</title>
+  <style>
+    html * {padding: 0; margin: 0;}
+    .wrapper {
+      width: 200px;
+      height: 130px;
+      margin: 50px auto;
+      padding: 20px;
+      border: 1px solid #000;
+    }
+
+    #options {
+      border: 1px solid #ccc;
+    }
+
+/*    #options li:hover {
+      background: #ccc;
+    }*/
+
+    #options li {
+      width: 190px;
+      height: 30px;
+      padding-left: 10px;
+      line-height: 30px;
+      list-style: none;
+    }
+
+    #options a {
+      text-decoration: none;
+      color: red;
+    }
+
+    #options a span {
+      color: #000;
+    }
+
+    #search {
+      border: 1px solid #000;
+    }
+
+    #search:focus {
+      border: 1px solid #eee;
+      border-top-color: #000;
+    }
+
+    .active {
+      background: #ccc;
+    }
+  </style>
+</head>
+<body>
+  <h1>可以输入以 T 或者 C 字母开头的关键词搜索试试</h1>
+  <div class="wrapper">
+    <input type="text" name="search" id="search">
+    <ul id="options" style="display: none;"></ul>
+  </div>
+
+  <script src="./js/util.js"></script>
+  <script src="./js/task0002_4.js"></script>
+</body>
+</html>

@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>倒计时</title>
+  <style>
+    .count {
+      background: pink;
+    }
+  </style>
+</head>
+<body>
+  <h1>请输入未来日期，下面将为你呈现倒计时时间</h1>
+  <p>格式：YYYY-MM-DD</p>
+  <input type="text" id="date" name="date">
+  <input type="button" id="calc" value="计算">
+  <div class="count">
+    距离
+    <span id="toYear"></span>
+    年
+    <span id="toMonth"></span>
+    月
+    <span id="toDay"></span>
+    日 00:00:00 还有
+    <span id="day"></span>
+    天
+    <span id="hour"></span>
+    小时
+    <span id="minute"></span>
+    分
+    <span id="second"></span>
+    秒
+  </div>
+
+  <script src="./js/util.js"></script>
+  <script src="./js/task0002_2.js"></script>
+</body>
+</html>
