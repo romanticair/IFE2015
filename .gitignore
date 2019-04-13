@@ -4,6 +4,8 @@
 fonts/
 design/
 lib/
+review/
+node_modules/
 .idea
 .vscode
 *.suo
