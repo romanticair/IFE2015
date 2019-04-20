@@ -238,6 +238,11 @@ function each(arr, fn) {
 
 // 获取一个对象里面第一层元素的数量，返回一个整数
 function getObjectLength(obj) {
+  if (Object.keys) {
+    // es5
+    return Object.keys(obj).length
+  }
+  
   var n = 0
   for (var key in obj) {
     if (obj.hasOwnProerty(key)) {
@@ -246,8 +251,6 @@ function getObjectLength(obj) {
   }
 
   return n
-  // or es5
-  // return Object.keys(obj).length
 }
 
 
@@ -530,9 +533,11 @@ function delegateEvent(element, tag, eventName, listener) {
   function proxy(ev) {
     var target = ev.target || ev.strElement
     // target.tagName 是大写的
-    if (target.localName === tag.toLowerCase()) {
-      listener.call(target, ev)
-    }
+    each(tag, function (t) {
+      if (target.localName === t.toLowerCase()) {
+        listener.call(target, ev)
+      }
+    })
   }
 
   addEvent(element, eventName, proxy, true)
@@ -568,7 +573,8 @@ $.click = function(selector, listener) {
 
 $.delegate = function(selector, tag, event, listener) {
   function proxy(ev) {
-    var target = ev.target
+    var ev = ev || window.event
+    var target = ev.target || ev.srcElement
     if (target.localName === tag.toLowerCase()) {
       listener.call(target, ev)
     }
