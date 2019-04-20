@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>个人计划 App</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/mask.css">
+</head>
+<body>
+  <!-- 浮层 -->
+  <div class="mask">
+    <div>
+      <p>动态添加</p>
+      <div class="icon">
+        <i class="fa fa-plus">Yes</i>
+        <i class="fa fa-remove">No</i>
+      </div>
+    </div>
+  </div>
+
+  <div class="wrapper">
+    <header>
+      <h1>GTD Tools</h1>
+    </header>
+    <section class="main">
+      <article class="left category clearfix">
+        <nav>
+          <h1 class="count">所有任务（未初始化）</h1>
+          <h2>分类列表</h2>
+        </nav>
+        <ul class="plans"></ul>
+        <footer><i id="new-cate" class="fa fa-plus">新增分类</i></footer>
+      </article>
+
+      <article class="center status clearfix">
+        <div class="tab-index">
+          <div data-type="1" class="active">所有</div>
+          <div data-type="2">未完成</div>
+          <div data-type="3">已完成</div>
+        </div>
+        <div class="tab-item">
+          <ul class="item current"></ul>
+          <ul class="item"></ul>
+          <ul class="item"></ul>
+        </div>
+        <footer><i id="new-plan" class="fa fa-plus">新增任务</i></footer>
+      </article>
+
+      <article class="right detail">
+        <div class="plan-view">
+          <i id="check-btn" class="fa fa-check"></i>
+          <i id="edit-btn" class="fa fa-edit"></i>
+          <div class="plan-name"></div>
+          <div class="plan-date"></div>
+          <div class="plan-detail"></div>
+        </div>
+
+        <div class="plan-edit" direct="save">
+          <i id="save-btn" class="fa fa-save"></i>
+          <i id="cancel-btn" class="fa fa-cancel"></i>
+          <div class="plan-name">
+            <label for="title-input">计划命名：</label>
+            <input id="title-input" type="text" placeholder="力求干练、简洁">
+          </div>
+          <div class="plan-date">
+            <label for="date-input">计划日期：</label>
+            <input id="date-input" type="text" placeholder="YYYY-MM-DD">
+          </div>
+          <div class="plan-detail">
+            <textarea name="editor" id="editor"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+  <script src="../task0002/js/util.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>

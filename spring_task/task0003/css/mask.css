@@ -1,0 +1,53 @@
+/*浮层*/
+.mask {
+  display: none;
+  position: fixed;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  background: rgba(0,0,0,0.5);
+  z-index: 1;
+}
+
+.mask > div {
+  position: absolute;
+  left: 50%;
+  top: 40%;
+  width: 500px;
+  margin-left: -250px;
+  font-size: 24px;
+  letter-spacing: 2px;
+  text-align: center;
+  color: #fff;
+}
+
+.icon {
+  margin-top: 40px;
+}
+
+.icon i {
+  padding-right: 30px;
+  font-size: 20px;
+}
+
+.icon .fa-remove:before {
+  padding-right: 10px;
+}
+
+.mask input {
+  width: 200px;
+  height: 20px;
+  margin-top: 30px;
+}
+
+.mask select {
+  width: 100px;
+  height: 20px;
+  margin-left: 10px;
+  font-size: 12px;
+}
+
+.mask .folder {
+  background: pink;
+}

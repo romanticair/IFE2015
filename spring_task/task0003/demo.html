@@ -1,0 +1,151 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>个人计划 App</title>
+  <link rel="stylesheet" href="css/index.css">
+  <link rel="stylesheet" href="css/base.css">
+  <link rel="stylesheet" href="css/mask.css">
+</head>
+<body>
+  <!-- 左侧：增加和删除分类浮层 -->
+  <!-- 右侧：完成任务浮层 -->
+  <div class="mask">
+    <div id="addCate">
+      <p>你确定要添加该分类吗？</p>
+      <div class="icon">
+        <i class="fa fa-plus">Yes</i>
+        <i class="fa fa-remove">No</i>
+      </div>
+    </div>
+    <div id="delCate">
+      <p>你确定要删除该分类吗？</p>
+      <div class="icon">
+        <i class="fa fa-plus">Yes</i>
+        <i class="fa fa-remove">No</i>
+      </div>
+    </div>
+    <div id="checkPlan">
+      <p>你确定要为该任务画上句号？</p>
+      <div class="icon">
+        <i class="fa fa-plus">Yes</i>
+        <i class="fa fa-remove">No</i>
+      </div>
+    </div>
+    <div id="savePlan">
+      <p>你确定要把该任务列入计划表？</p>
+      <div class="icon">
+        <i class="fa fa-plus">Yes</i>
+        <i class="fa fa-remove">No</i>
+      </div>
+    </div>
+    <div id="cancelPlan">
+      <p>你确定要取消该计划安排？</p>
+      <div class="icon">
+        <i class="fa fa-plus">Yes</i>
+        <i class="fa fa-remove">No</i>
+      </div>
+    </div>
+  </div>
+  <div class="wrapper">
+    <header>
+      <h1>GTD Tools</h1>
+    </header>
+    <section class="main">
+      <article class="left category clearfix">
+        <nav>
+          <h1 class="count">所有任务（11）</h1>
+          <h2>分类列表</h2>
+        </nav>
+        <ul class="plans">
+          <li class="item">
+            <h3><i class="fa fa-folder">百度IFE项目（10）</i></h3>
+            <p class="active"><i class="fa fa-file">task1（6）</i></p>
+            <p><i class="fa fa-file">task2（4）</i></p>
+            <i class="fa fa-remove"></i>
+          </li>
+          <li class="item">
+            <h3><i class="fa fa-folder">毕业设计（1）</i></h3>
+            <p><i class="fa fa-file">task1（7）</i></p>
+            <i class="fa fa-remove"></i>
+          </li>
+          <li class="item">
+            <h3><i class="fa fa-folder">社团活动（0）</i></h3>
+            <i class="fa fa-remove"></i>
+          </li>
+          <li class="item">
+            <h3><i class="fa fa-folder">家庭生活（0）</i></h3>
+            <i class="fa fa-remove"></i>
+          </li>
+          <li class="item">
+            <h3><i class="fa fa-folder">默认分类（0）</i></h3>
+          </li>
+        </ul>
+        <footer><i id="new-cate" class="fa fa-plus">新增分类</i></footer>
+      </article>
+
+      <article class="center status clearfix">
+        <div class="tab-index">
+          <div data-type="1" class="active">所有</div>
+          <div data-type="2">未完成</div>
+          <div data-type="3">已完成</div>
+        </div>
+        <div class="tab-item">
+          <ul class="item current">
+            <li>
+              <h3>2018-04-09</h3>
+              <p class="finished">to-do 1</p>
+              <p>to-do 2</p>
+            </li>
+            <li>
+              <h3>2018-04-29</h3>
+              <p>to-do 3</p>
+              <p>to-do 4</p>
+            </li>
+            <li>
+              <h3>2018-05-09</h3>
+              <p>to-do 5</p>
+              <p class="active">to-do 6</p>
+            </li>
+            <li>
+              <h3>2018-06-09</h3>
+              <p>to-do 7</p>
+            </li>
+          </ul>
+          <ul class="item"></ul>
+          <ul class="item"></ul>
+        </div>
+        <footer><i id="new-plan" class="fa fa-plus">新增任务</i></footer>
+      </article>
+
+      <article class="right detail">
+        <div class="plan-view">
+          <i id="check-btn" class="fa fa-check"></i>
+          <i id="edit-btn" class="fa fa-edit"></i>
+          <div class="plan-name">to-do 6</div>
+          <div class="plan-date">计划日期：2015-04-30</div>
+          <div class="plan-detail">完成task3的编码工作</div>
+        </div>
+
+        <div class="plan-edit">
+          <i id="save-btn" class="fa fa-save"></i>
+          <i id="cancel-btn" class="fa fa-cancel"></i>
+          <div class="plan-name">
+            <label for="title-input">计划命名：</label>
+            <input id="title-input" type="text" placeholder="力求干练、简洁">
+          </div>
+          <div class="plan-date">
+            <label for="date-input">计划日期：</label>
+            <input id="date-input" type="text" placeholder="YYYY-MM-DD">
+          </div>
+          <div class="plan-detail">
+            <textarea name="editor" id="editor"></textarea>
+          </div>
+        </div>
+      </article>
+    </section>
+  </div>
+  <script src="../task0002/js/util.js"></script>
+  <script src="js/index.js"></script>
+</body>
+</html>
