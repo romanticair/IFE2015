@@ -50,7 +50,8 @@ window.onload = function () {
     '删除该分类，其全部子分类和计划也会被删除！',
     '提前完成了任务，你真棒！',
     '确定好一个计划是成功的第一步！',
-    '计划内容尚未保存，你确定要离开吗？'
+    '计划内容尚未保存，你确定要离开吗？',
+    '你确定要更新该计划吗？'
   ]
 
   var directMap = {
@@ -58,10 +59,11 @@ window.onload = function () {
     delete: 1,
     check: 2,
     save: 3,
-    force: 4
+    force: 4,
+    edit: 5
   }
 
-  var directActions = [add, del, check, save, force]
+  var directActions = [add, del, check, save, force, edit]
 
   function init() {
     loadData()
@@ -147,11 +149,21 @@ window.onload = function () {
   }
 
   function openCateDealer(h3) {
+    // 方案 1
+    /*
     each(category.children, function (item) {
       removeClass(item, 'selected')
     })
 
     addClass(h3.parentNode, 'selected')
+    */
+
+    // 方案 2
+    if (hasClass(h3.parentNode, 'selected')) {
+      removeClass(h3.parentNode, 'selected')
+    } else {
+      addClass(h3.parentNode, 'selected')
+    }
   }
 
   function maskSwitch(direct) {
@@ -225,7 +237,6 @@ window.onload = function () {
     var linkIdSet = []
     if (selectedNode.tagName === 'H3') {
       var id = getIdAndPid(selectedCateNode)[0]
-      // category.removeChild(selectedCateNode)
 
       selectedCateNode = null
       selectedNode = null
@@ -249,7 +260,7 @@ window.onload = function () {
       storeData('cates', cates)
     } else {
       var id = getIdAndPid(selectedTaskNode)[0]
-      // selectedCateNode.removeChild(selectedTaskNode)
+
       // 子分类层
       each([].concat(tasks), function (task, i) {
         if (task.id === id) {
@@ -361,48 +372,77 @@ window.onload = function () {
       selectedPlanNode = this
       var id = getIdAndPid(this)[0]
       var plan = getPlanById(id)
+
+      each(tabItems.getElementsByClassName('active'), function (p) {
+        removeClass(p, 'active')
+      })
+
+      addClass(this, 'active')
       updateViewPage(plan)
     })
   }
 
   function renderTabItem(plans) {
+    var preItem = null
     // render 之前先清除
     clearTabItem()
+    // 升降序
+    sortByDate(plans)
     // 渲染三个 ul
-    each(tabItems.children, function (item, i) {
-      each(plans, function (plan) {
-        if (i === 0) {
+    each(tabItems.children, function (item, index) {
+      each(plans, function (plan, i) {
+        if (index === 0) {
           // 全部
-          renderOneTabItem(item, plan)
-        } else if (i === 1 && !isFinished(plan)) {
+          // 日期相同，则为相同项
+          if (i !== 0 && plan.date === plans[i - 1].date) {
+            renderTabSubItem(preItem, plan)
+          } else {
+            preItem = renderOneTabItem(item, plan)
+          }
+        } else if (index === 1 && !isFinished(plan)) {
           // 未完成
-          renderOneTabItem(item, plan)
-        } else if (i === 2 && isFinished(plan)) {
+          if (i !== 0 && plan.date === plans[i - 1].date) {
+            renderTabSubItem(preItem, plan)
+          } else {
+            preItem = renderOneTabItem(item, plan)
+          }
+        } else if (index === 2 && isFinished(plan)) {
           // 已完成
-          renderOneTabItem(item, plan)
+          if (i !== 0 && plan.date === plans[i - 1].date) {
+            renderTabSubItem(preItem, plan)
+          } else {
+            preItem = renderOneTabItem(item, plan)
+          }
         }
       })
     })
+
+    preItem = null
   }
 
   function renderOneTabItem(parent, plan) {
     var li = document.createElement('li')
     var h3 = document.createElement('h3')
-    var p = document.createElement('p')
 
     h3.innerText = plan.date
+    li.appendChild(h3)
+    renderTabSubItem(li, plan)
+    parent.appendChild(li)
+
+    return li
+  }
+
+  function renderTabSubItem(parent, plan) {
+    var p = document.createElement('p')
     p.innerText = plan.plan
     p.setAttribute('i', plan.id)
     p.setAttribute('pid', plan.tid)
-
     if (isFinished(plan)) {
       addClass(p, 'finished')
       p.appendChild(generateI('fa-save'))
     }
-    
-    li.appendChild(h3)
-    li.appendChild(p)
-    parent.appendChild(li)
+
+    parent.appendChild(p)
   }
 
   function clearTabItem() {
@@ -495,7 +535,7 @@ window.onload = function () {
 
   function save() {
     var plan = getData()
-    plan = parsePlan(plan)
+    plan = addStatus(plan)
 
     if (planExist(plan)) {
       return window.alert('该计划已存在任务列表中！')
@@ -523,7 +563,7 @@ window.onload = function () {
   }
 
   function dataVerifyFail(plan) {
-    // 简单规则
+    // 简单规则，暂不做提示
     if (plan.plan.length < 2 || plan.plan.length > 20) {
       return true
     }
@@ -538,7 +578,7 @@ window.onload = function () {
     return false
   }
 
-  function parsePlan(plan) {
+  function addStatus(plan) {
     extend(plan, {status: 0})
     return plan
   }
@@ -547,37 +587,35 @@ window.onload = function () {
     // 在此之前已经更新全局数据
     updateCatePage()
     updateTaskPage(plan)
-    updateViewPage(plan)
+
+    var plans = getTaskPlanList(plan.tid)
+
+    renderTabItem(plans)
     // 清空输入
     clearDetailPage(true)
+    updateViewPage(plan)
   }
 
   function updateCatePage() {
     // 只有 save 和 check 时才会触发
-    // 更新所有任务数量
     var i1 = selectedCateNode.getElementsByClassName('fa-folder')[0]
     var i2 = selectedTaskNode.getElementsByClassName('fa-file')[0]
 
-    var all = getAllPlanCount()
     var cid = getIdAndPid(selectedCateNode)[0]
     var tid = getIdAndPid(selectedTaskNode)[0]
     var n1 = getCatePlanCount(cid, true)
     var n2 = getTaskPlanCount(tid, true)
 
-    planCount.innerText = '所有任务' + '（' + all + '）'
-    i1.innerText = i1.innerText.replace(/\d+/, n1)
-    i2.innerText = i2.innerText.replace(/\d+/, n2)
+    // 更新所有任务数量，任务状态列表计划数量
+    updateTotalCount()
+    i1.innerText = i1.innerText.replace(/\（\d+/, '（' + n1)
+    i2.innerText = i2.innerText.replace(/\（\d+/, '（' + n2)
   }
 
   function updateTaskPage(plan) {
-    // 更新任务页，主要是添加 tab-item
-    each(tabItems.children, function (item, i) {
-      if (i === 0) {
-        renderOneTabItem(item, plan)
-      } else if (i === 1) {
-        renderOneTabItem(item, plan)
-      }
-    })
+    // 直接更新整个任务页
+    var plans = getTaskPlanList(plan.tid)
+    renderTabItem(plans)
   }
 
   function bindCheck() {
@@ -586,6 +624,7 @@ window.onload = function () {
 
       var id = getIdAndPid(selectedPlanNode)[0]
       var plan = getPlanById(id)
+
       if (isFinished(plan)) {
         alert('本任务已完成！')
       } else {
@@ -596,13 +635,16 @@ window.onload = function () {
 
   function check() {
     var ids = getIdAndPid(selectedPlanNode)
-    var plans = getTaskPlanList(ids[1])
     var plan = getPlanById(ids[0])
+    var plans = getTaskPlanList(ids[1])
+
     // 标记已完成，引用类型，直接生效
     plan.status = 1
     renderTabItem(plans)
+
     // 更新计划数量
     updateCatePage()
+
     // 写入 localStorage
     storeData('plans', plans)
   }
@@ -623,6 +665,7 @@ window.onload = function () {
     clearDetailPage(true)
     // 修改 plan-edit direct 属性值，标记本操作为修改未完成计划
     switchSaveOrEdit(true)
+
     titleInput.value = plan.plan
     dateInput.value = plan.date
     detailInput.value = plan.detail
@@ -632,7 +675,8 @@ window.onload = function () {
   function edit() {
     var editPlan = getData()
     var id = getIdAndPid(selectedPlanNode)[0]
-    plan = getPlanById(id)
+    var plan = getPlanById(id)
+
     // 修改的只能日期，标题，内容
     // 已经过数据校验，这里直接匹配有无修改，操作引用并保存即可
     var change = false
@@ -652,9 +696,9 @@ window.onload = function () {
     }
 
     if (change) {
-      updatePage(plan)
       // 更新数据
       storeData('plans', plans)
+      updatePage(plan)
     }
 
     // 切回 View 页面
@@ -670,9 +714,13 @@ window.onload = function () {
     }
   }
 
-  function initRender() {
+  function updateTotalCount() {
     // 所有任务数量
     planCount.innerText = '所有任务' + '（' + getAllPlanCount() + '）'
+  }
+
+  function initRender() {
+    updateTotalCount()
 
     // 大分类
     category.innerHTML = ''
@@ -695,7 +743,8 @@ window.onload = function () {
 
     // 详细页 -- 默认计划页
     // 保证渲染 id === 1 的 plan
-    updateViewPage(getObjectById(defaultPlans, 1))
+    var defaultDetail = getObjectById(defaultPlans, 1)
+    updateViewPage(defaultDetail)
 
     // 保存引用
     selectedCateNode = category.getElementsByClassName('selected')[0]
@@ -713,31 +762,45 @@ window.onload = function () {
   }
 
   function formatData(s1, s2, s3) {
-    var lv1 = JSON.parse(s1)
-    var lv2 = JSON.parse(s2)
-    var lv3 = JSON.parse(s3)
     // 必须有默认选项
-    if (hasDefault(lv1, lv2, lv3)) {
-      cates = lv1
-      tasks = lv2
-      plans = lv3
+    if (hasDefault(s1, s2, s3)) {
+      cates = JSON.parse(s1)
+      tasks = JSON.parse(s2)
+      plans = JSON.parse(s3)
     } else {
       addDefault()
       loadData()
     }
   }
 
-  function hasDefault(arr1, arr2, arr3) {
-    // default 的 cate task plan id 只能是 1，对应着 addDefault
-    return arr1 && arr2 && arr3
-      && arr1.length && arr2.length && arr3.length
-      && (arr1[0].id === 1) && (arr2[0].id === 1) && (arr3[0].id === 1)
+  function hasDefault(cate, task, plan) {
+  // default 的 cate task plan id 只能是 1，对应着 addDefault
+  return /\"id\":1/gi.test(cate) &&
+         /\"id\":1,\"cid\":1/gi.test(task) &&
+         /\"id\":1,\"tid\":1/gi.test(plan)
   }
 
   function addDefault() {
-    storeData('cates', [{id: 1, cate: '默认分类'}])
-    storeData('tasks', [{id: 1, cid: 1, task: '操作指南'}])
-    storeData('plans', [{id: 1, tid: 1, plan: '请阅读我', date: '2019-04-20', detail: '本 APP 为离线 APP，数据将存储在本地硬盘！\n\n左侧为大分类列表，其下有子分类任务列表\n中间为当前分类下的任务列表\n右侧为详情计划内容\n\n可以添加或删除分类、任务、计划，也可以修改计划内容，标记计划完成情况。\n\n\nBy Romantic.', status: 1}])
+    var cate = [{id: 1, cate: '默认分类'}]
+    var task = [{id: 1, cid: 1, task: '操作指南'}]
+    var plan = [{id: 1, tid: 1, plan: '请阅读我', date: '2019-04-20', detail: '本 APP 为离线 APP，数据将存储在本地硬盘！\n\n左侧为大分类列表，其下有子分类任务列表\n中间为当前分类下的任务列表\n右侧为详情计划内容\n\n可以添加或删除分类、任务、计划，也可以修改计划内容，标记计划完成情况。\n\n\nBy Romantic.', status: 1}]
+    storeData('cates', cate)
+    storeData('tasks', task)
+    storeData('plans', plan)
+  }
+
+  function sortByDate(arrObj, reverse) {
+    arrObj.sort(function (a, b) {
+      var d1 = (new Date(a.date)).getTime()
+      var d2 = (new Date(b.date)).getTime()
+      if (d1 > d2) {
+        return reverse ? 1 : -1
+      } else if (d2 > d1) {
+        return reverse ? -1 : 1
+      } else {
+        return 0
+      }
+    })
   }
 
   function storeData(key, val) {
@@ -745,10 +808,9 @@ window.onload = function () {
     window.localStorage.setItem(key, JSON.stringify(val))
   }
 
-
   function isFinished(plan) {
     // status: 1 代表已完成
-    return (plan.status === 1)
+    return plan.status === 1
   }
 
   function getIdAndPid(dom) {
