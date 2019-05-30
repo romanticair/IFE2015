@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+  <link rel="stylesheet" href="css/normalize.css">
+  <link rel="stylesheet" href="css/main.css">
+  <title>M-TODO</title>
+</head>
+<body>
+  <div class="wrapper">
+    <section class="cate-container animate">
+      <ul class="cate">
+        <li data-cid="1">任务分类1</li>
+        <li data-cid="2">任务分类2</li>
+        <li data-cid="3">任务分类3</li>
+      </ul>
+    </section>
+    <section class="task-container animate">
+      <aside class="back"></aside>
+      <article>
+        <ul class="task" data-pid="1" data-tid="1">
+          <li data-index="1">任务分类1</li>
+          <li data-index="2">任务分类2</li>
+          <li data-index="3">任务分类3</li>
+      </ul>
+      </article>
+    </section>
+    <section class="detail-container animate">
+      <aside class="back"></aside>
+      <article>
+        <h3 class="task-name">任务1</h3>
+        <p class="task-date">2019-10-21</p>
+        <p class="desc">任务描述</p>
+      </article>
+    </section>    
+  </div>
+
+  <script src="js/util.js"></script>
+  <script src="js/main.js"></script>
+</body>
+</html>
