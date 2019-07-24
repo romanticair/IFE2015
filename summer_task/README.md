@@ -168,4 +168,4 @@
 
 关注我们的微信公众号：搜索baidu_ife或扫描下方二维码
 
-![二维码](../asset/weixin.jpeg)
+![二维码](./asset/weixin.jpeg)
