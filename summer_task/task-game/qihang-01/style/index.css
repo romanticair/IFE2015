@@ -1,0 +1,97 @@
+.clearfix:after {
+  content: '.';
+  display: block;
+  height: 0;
+  visibility: hidden;
+  clear: both;
+}
+
+.show {
+  display: none;
+}
+
+header > h1 {
+  text-align: center;
+  color: pink;
+}
+
+.game {
+  position: relative;
+  height: 400px;
+  padding: 20px;
+  background: pink;
+}
+
+.game > p {
+  float: left;
+  width: 50%;
+  margin-top: 10px;
+  font-size: 16px;
+  text-align: center;
+}
+
+.game > p > span {
+  color: #fff;
+}
+
+.options {
+  position: absolute;
+  left: 0;
+  top: 30%;
+  width: 100%;
+  height: 133px;
+  text-align: center;
+}
+
+.options > img {
+  display: inline-block;
+  margin-left: 15px;
+  margin-right: 15px;
+  height: 100%;
+  opacity: .7;
+}
+
+.options > img:hover {
+  opacity: 1;
+}
+
+.show-area {
+  position: absolute;
+  display: none;
+  left: 0;
+  top: 30%;
+  width: 100%;
+  height: 133px;
+  text-align: center;
+}
+
+.show-area > * {
+  position: relative;
+  display: inline-block;
+  margin: 0 15px;
+  height: 100%;
+}
+
+.result {
+  font-size: 24px;
+  line-height: 133px;
+  vertical-align: top;
+}
+
+.lose,
+.win {
+  position: absolute;
+  left: 0;
+  right: 0;
+  top: 0;
+  bottom: 0;
+  opacity: .6;
+}
+
+.lose {
+  background: red;
+}
+
+.win {
+  background: green;
+}

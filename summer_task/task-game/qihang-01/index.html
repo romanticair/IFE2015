@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>石头剪刀布小游戏</title>
+  <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+  <header>
+    <h1>石头剪刀布小游戏，开始玩吧！</h1>
+  </header>
+  <section class="game clearfix">
+    <p>请出拳吧，少年！</p>
+    <p>你已经获胜了 <span id="score">0</span> 次</p>
+    <article class="options">
+      <img id="jianDao" src="../../asset/jiandao.jpg" />
+      <img id="shiTou" src="../../asset/shitou.jpg" />
+      <img id="bu" src="../../asset/bu.jpg" />
+    </article>
+    <article class="show-area">
+      <div>
+        <img src="../../asset/bu.jpg" class="real-player-seleted" />
+        <!-- 两个 span 用于区别输赢 -->
+        <span></span>
+      </div>
+      <h3 class="result">平局</h3>
+      <div>
+        <img src="../../asset/bu.jpg" class="compute-player-selected" />
+        <span></span>
+      </div>
+    </article>
+  </section>
+
+  <script src="./js/index.js"></script>
+</body>
+</html>
