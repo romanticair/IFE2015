@@ -4,7 +4,7 @@
 
 实现一个移动端游戏，玩家通过手机左右倾斜来控制飞机的水平移动，射击不断出现的敌机，并躲避敌机的冲击。
 
-![示例图](../asset/game_yangfan_task2_01.png)
+![示例图](../../asset/game_yangfan_task2_01.png)
 
 ## 任务步骤
 
@@ -30,8 +30,8 @@
 
 本游戏主角即为我方飞机，它在飞行时会以帧动画的形式显示，例如下图的两帧构成飞机喷气的效果：
 
-![主角帧1](../asset/game_yangfan_task2_02.png)
-![主角帧2](../asset/game_yangfan_task2_03.png)
+![主角帧1](../../asset/game_yangfan_task2_02.png)
+![主角帧2](../../asset/game_yangfan_task2_03.png)
 
 可以增加更多帧使动画更加细腻流畅。
 

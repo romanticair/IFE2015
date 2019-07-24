@@ -4,11 +4,11 @@
 
 实现一个个人图片展示网站，包括展现及后台管理
 
-![示例图](../asset/ria_yangfan_task1_01.png)
+![示例图](../../asset/ria_yangfan_task1_01.png)
 
-![示例图](../asset/ria_yangfan_task1_03.png)
+![示例图](../../asset/ria_yangfan_task1_03.png)
 
-![示例图](../asset/ria_yangfan_task1_02.png)
+![示例图](../../asset/ria_yangfan_task1_02.png)
 
 以上图仅作参考，大家可以随意按照自己的喜欢进行界面设计。
 

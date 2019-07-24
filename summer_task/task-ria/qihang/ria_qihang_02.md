@@ -4,13 +4,13 @@
 
 基于任务一，实现一个支持响应式个人知识笔记管理网站
 
-![示例图](../asset/ria_qihang_task2_01.png)
+![示例图](../../asset/ria_qihang_task2_01.png)
 
-![示例图](../asset/ria_qihang_task2_02.png)
+![示例图](../../asset/ria_qihang_task2_02.png)
 
-![示例图](../asset/ria_qihang_task2_03.png)
+![示例图](../../asset/ria_qihang_task2_03.png)
 
-![示例图](../asset/ria_qihang_task2_04.png)
+![示例图](../../asset/ria_qihang_task2_04.png)
 
 以上图仅作参考，大家可以随意按照自己的喜欢进行界面设计。
 

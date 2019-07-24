@@ -4,9 +4,9 @@
 
 基于任务一，实现对于图片的复杂编辑功能
 
-![示例图](../asset/ria_yangfan_task2_01.png)
+![示例图](../../asset/ria_yangfan_task2_01.png)
 
-![示例图](../asset/ria_yangfan_task2_02.png)
+![示例图](../../asset/ria_yangfan_task2_02.png)
 
 以上图仅作参考，大家可以随意按照自己的喜欢进行界面设计。
 

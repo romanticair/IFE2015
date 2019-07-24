@@ -4,9 +4,9 @@
 
 实现一个较为复杂的空气质量数据仪表盘，如下图
 
-![示例图](../asset/vis_yangfan_task2.jpg)
+![示例图](../../asset/vis_yangfan_task2.jpg)
 
-[参考数据](../asset/aqidata.xlsx)
+[参考数据](../../asset/aqidata.xlsx)
 
 以上图仅作参考，大家可以随意按照自己的喜欢进行界面设计。
 
